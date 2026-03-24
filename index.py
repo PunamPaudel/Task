@@ -23,8 +23,8 @@ data = [
         "Marks": "90.5"
     }
 
-
 ]
+
 for row in data:
     if row["Email"] == "xyz@abc.com":
         print(row["Name"])
