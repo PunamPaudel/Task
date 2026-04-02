@@ -39,3 +39,9 @@ class Boys(Person):
 
 p1 = Person("Punam", "Paudel")
 print(p1.fristname, p1.lastname)
+
+
+f = open("punu.txt", "a")
+f.write("hi i am from code!")
+f = open("punu.txt", "r")
+print(f.read())

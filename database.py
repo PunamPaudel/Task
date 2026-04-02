@@ -1,5 +1,8 @@
 
 
+import csv
+
+
 def get_data():
     data = [
         {
@@ -30,27 +33,16 @@ def get_data():
     return data
 
 
-def write_to_txt():
-    data = get_data()
+data = get_data()
 
-    with open("students.txt", "w") as file:
+with open("students_pipe.csv", "w", newline="") as file:
+    writer = csv.DictWriter(
+        file,
+        fieldnames=data[0].keys(),
+        delimiter="|"  # THIS IS THE MAIN CHANGE
+    )
 
-        file.write(
-            f"{'SN':<5}{'Name':<10}{'Email':<25}{'Phone':<15}{'Marks':<10}\n")
-        file.write("-" * 70 + "\n")
+    writer.writeheader()
+    writer.writerows(data)
 
-        for row in data:
-            file.write(
-                f"{row['SN']:<5}"
-                f"{row['Name']:<10}"
-                f"{row['Email']:<25}"
-                f"{row['Phone']:<15}"
-                f"{row['Marks']:<10}\n"
-            )
-
-    print(" Data successfully written to students.txt")
-
-
-# Run the program
-if __name__ == "__main__":
-    write_to_txt()
+print("Pipe-separated file created!")
